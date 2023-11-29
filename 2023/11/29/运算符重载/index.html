@@ -18,22 +18,22 @@
   <meta name="author" content="wangzj">
   <meta name="keywords" content="">
   
-    <meta name="description" content="给定区间l，r 求区间的奇数个数">
+    <meta name="description" content="c++运算符重载概念和原理、 c++的运算符加减乘除只能对于基本数据类型变量或常量进行运算，当我们想要进行对象之间的运算时略显繁琐，希望对象之间也可以直接使用运算符进行运算 利用 C++ 提供的“运算符重载”机制，赋予运算符新的功能，就能解决用+将两个对象相加这样的问题。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="小技巧-寻找区间奇数个数">
-<meta property="og:url" content="http://example.com/2023/11/13/%E5%B0%8F%E6%8A%80%E5%B7%A7-%E6%B1%82%E5%8C%BA%E9%97%B4%E5%A5%87%E6%95%B0%E4%B8%AA%E6%95%B0/index.html">
+<meta property="og:title" content="c++运算符重载">
+<meta property="og:url" content="http://example.com/2023/11/29/%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD/index.html">
 <meta property="og:site_name" content="wangzj的个人博客">
-<meta property="og:description" content="给定区间l，r 求区间的奇数个数">
+<meta property="og:description" content="c++运算符重载概念和原理、 c++的运算符加减乘除只能对于基本数据类型变量或常量进行运算，当我们想要进行对象之间的运算时略显繁琐，希望对象之间也可以直接使用运算符进行运算 利用 C++ 提供的“运算符重载”机制，赋予运算符新的功能，就能解决用+将两个对象相加这样的问题。">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-11-13T05:40:00.509Z">
-<meta property="article:modified_time" content="2023-11-13T05:45:06.366Z">
+<meta property="article:published_time" content="2023-11-29T06:45:31.280Z">
+<meta property="article:modified_time" content="2023-11-29T07:32:23.810Z">
 <meta property="article:author" content="wangzj">
-<meta property="article:tag" content="小技巧">
+<meta property="article:tag" content="运算符重载">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>小技巧-寻找区间奇数个数 - wangzj的个人博客</title>
+  <title>c++运算符重载 - wangzj的个人博客</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -238,7 +238,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="小技巧-寻找区间奇数个数"></span>
+            <span id="subtitle" data-typed-text="c++运算符重载"></span>
           
         </div>
 
@@ -249,8 +249,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-11-13 13:40" pubdate>
-          2023年11月13日 下午
+        <time datetime="2023-11-29 14:45" pubdate>
+          2023年11月29日 下午
         </time>
       </span>
     
@@ -261,7 +261,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          121 字
+          890 字
         
       </span>
     
@@ -272,7 +272,7 @@
         
         
         
-          2 分钟
+          8 分钟
         
       </span>
     
@@ -322,20 +322,32 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">小技巧-寻找区间奇数个数</h1>
+            <h1 id="seo-header">c++运算符重载</h1>
             
             
               <div class="markdown-body">
                 
-                <p>给定区间l，r 求区间的奇数个数</p>
+                <h1 id="c运算符重载概念和原理">c++运算符重载概念和原理、</h1>
+<p>c++的运算符加减乘除只能对于基本数据类型变量或常量进行运算，当我们想要进行对象之间的运算时略显繁琐，希望对象之间也可以直接使用运算符进行运算</p>
+<p>利用 C++
+提供的“运算符重载”机制，赋予运算符新的功能，就能解决用<code>+</code>将两个对象相加这样的问题。</p>
 <span id="more"></span>
-<p>((r + 1) / 2 - l / 2)</p>
-<p>有种前缀和样子</p>
-<p>r/2表示0到r之间奇数的个数</p>
-<p>+1是为了防止r是奇数时初二端点没算上</p>
-<p>l/2表示0到l之间的奇数个数</p>
-<p>没有+1是为了不算上l的端点值</p>
-<p>实现类似arr[ r ] - arr[ l-1 ] 的效果</p>
+<p>运算符重载，就是对已有的运算符赋予多重含义，使同一运算符作用于不同类型的数据时产生不同的行为。运算符重载的目的是使得
+C++ 中的运算符也能够用来操作对象。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs c++">返回值类型 <span class="hljs-keyword">operator</span> 运算符(形参表) &#123;<br>...<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>包含被重载的运算符的表达式会被编译成对运算符函数的调用，运算符的操作数成为函数调用时的实参，运算的结果就是函数的返回值。运算符可以被多次重载。</p>
+<p>运算符可以重载为全局函数，也可以被重载为成员函数，应用于类或结构体。</p>
+<p>比如我们在写计算几何时可以定义point结构体用于表示点坐标重写运算符加减点坐标得到二维平面上的向量来计算会更加简便</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">struct</span> <span class="hljs-title class_">point</span>&#123;<br>    <span class="hljs-type">int</span> x;<br>    <span class="hljs-type">int</span> y;<br>    <span class="hljs-built_in">point</span>(<span class="hljs-type">int</span> x = <span class="hljs-number">0</span>, <span class="hljs-type">int</span> y = <span class="hljs-number">0</span>) :<span class="hljs-built_in">x</span>(x), <span class="hljs-built_in">y</span>(y) &#123;&#125;;<br>    point <span class="hljs-keyword">operator</span> -(<span class="hljs-type">const</span> point&amp; p) &#123;<br>        x -= p.x; y -= p.y;<br>        <span class="hljs-keyword">return</span> *<span class="hljs-keyword">this</span>;<br>    &#125;<br>&#125;;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>  <br>    <span class="hljs-function">point <span class="hljs-title">p1</span><span class="hljs-params">(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>)</span>, <span class="hljs-title">p2</span><span class="hljs-params">(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>)</span></span>;<br>    p1 = p1 - p2;<br>    cout &lt;&lt; p1.x&lt;&lt;<span class="hljs-string">&quot; &quot;</span> &lt;&lt; p1.y;<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>结果是</p>
+<blockquote>
+<p>-1 -2</p>
+</blockquote>
+<p>运算符重载为全局函数时，参数的个数等于运算符的目数（即操作数的个数）；运算符重载为成员函数时，参数的个数等于运算符的目数减一。</p>
+<h1 id="运算符重载为友元函数">运算符重载为友元函数</h1>
+<p>一般情况下，将运算符重载为成员函数是较好的选择。但有时，重载为成员函数不能满足使用要求，重载为全局函数又不能访问类的私有成员，因此需要将运算符重载为友元。</p>
+<p>在重载运算符的基础之上 在前面加上关键词friend
+即可。重载的运算符可以访问到结构体内变量</p>
 
                 
               </div>
@@ -369,7 +381,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/%E5%B0%8F%E6%8A%80%E5%B7%A7/" class="print-no-link">#小技巧</a>
+        <a href="/tags/%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD/" class="print-no-link">#运算符重载</a>
       
     </div>
   
@@ -381,8 +393,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>小技巧-寻找区间奇数个数</div>
-      <div>http://example.com/2023/11/13/小技巧-求区间奇数个数/</div>
+      <div>c++运算符重载</div>
+      <div>http://example.com/2023/11/29/运算符重载/</div>
     </div>
     <div class="license-meta">
       
@@ -394,7 +406,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年11月13日</div>
+          <div>2023年11月29日</div>
         </div>
       
       
@@ -426,18 +438,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/11/23/git%E4%BD%BF%E7%94%A8/" title="git快速上手">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">git快速上手</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/10/24/%E5%B0%8F%E6%8A%80%E5%B7%A7-/" title="小技巧-寻找区间未出现的最小非负整数">
-                        <span class="hidden-mobile">小技巧-寻找区间未出现的最小非负整数</span>
+                      <a href="/2023/11/23/git%E4%BD%BF%E7%94%A8/" title="git快速上手">
+                        <span class="hidden-mobile">git快速上手</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
