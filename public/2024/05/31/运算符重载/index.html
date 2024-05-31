@@ -18,12 +18,12 @@
   <meta name="author" content="wangzj">
   <meta name="keywords" content="">
   
-    <meta name="description" content="c++运算符重载概念和原理c++的运算符加减乘除只能对于基本数据类型变量或常量进行运算，当我们想要进行对象之间的运算时略显繁琐，希望对象之间也可以直接使用运算符进行运算 利用 C++ 提供的“运算符重载”机制，赋予运算符新的功能，就能解决用+将两个对象相加这样的问题。">
+    <meta name="description" content="c++运算符重载概念和原理 c++的运算符加减乘除只能对于基本数据类型变量或常量进行运算，当我们想要进行对象之间的运算时略显繁琐，希望对象之间也可以直接使用运算符进行运算 利用 C++ 提供的“运算符重载”机制，赋予运算符新的功能，就能解决用+将两个对象相加这样的问题。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="c++运算符重载">
 <meta property="og:url" content="http://example.com/2024/05/31/%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD/index.html">
 <meta property="og:site_name" content="wangzj的个人博客">
-<meta property="og:description" content="c++运算符重载概念和原理c++的运算符加减乘除只能对于基本数据类型变量或常量进行运算，当我们想要进行对象之间的运算时略显繁琐，希望对象之间也可以直接使用运算符进行运算 利用 C++ 提供的“运算符重载”机制，赋予运算符新的功能，就能解决用+将两个对象相加这样的问题。">
+<meta property="og:description" content="c++运算符重载概念和原理 c++的运算符加减乘除只能对于基本数据类型变量或常量进行运算，当我们想要进行对象之间的运算时略显繁琐，希望对象之间也可以直接使用运算符进行运算 利用 C++ 提供的“运算符重载”机制，赋予运算符新的功能，就能解决用+将两个对象相加这样的问题。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-05-31T13:08:07.863Z">
 <meta property="article:modified_time" content="2024-05-31T13:08:07.863Z">
@@ -327,10 +327,13 @@
             
               <div class="markdown-body">
                 
-                <h1 id="c-运算符重载概念和原理"><a href="#c-运算符重载概念和原理" class="headerlink" title="c++运算符重载概念和原理"></a>c++运算符重载概念和原理</h1><p>c++的运算符加减乘除只能对于基本数据类型变量或常量进行运算，当我们想要进行对象之间的运算时略显繁琐，希望对象之间也可以直接使用运算符进行运算</p>
-<p>利用 C++ 提供的“运算符重载”机制，赋予运算符新的功能，就能解决用<code>+</code>将两个对象相加这样的问题。</p>
+                <h1 id="c运算符重载概念和原理">c++运算符重载概念和原理</h1>
+<p>c++的运算符加减乘除只能对于基本数据类型变量或常量进行运算，当我们想要进行对象之间的运算时略显繁琐，希望对象之间也可以直接使用运算符进行运算</p>
+<p>利用 C++
+提供的“运算符重载”机制，赋予运算符新的功能，就能解决用<code>+</code>将两个对象相加这样的问题。</p>
 <span id="more"></span>
-<p>运算符重载，就是对已有的运算符赋予多重含义，使同一运算符作用于不同类型的数据时产生不同的行为。运算符重载的目的是使得 C++ 中的运算符也能够用来操作对象。</p>
+<p>运算符重载，就是对已有的运算符赋予多重含义，使同一运算符作用于不同类型的数据时产生不同的行为。运算符重载的目的是使得
+C++ 中的运算符也能够用来操作对象。</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs c++">返回值类型 <span class="hljs-keyword">operator</span> 运算符(形参表) &#123;<br>...<br>&#125;<br></code></pre></td></tr></table></figure>
 <p>包含被重载的运算符的表达式会被编译成对运算符函数的调用，运算符的操作数成为函数调用时的实参，运算的结果就是函数的返回值。运算符可以被多次重载。</p>
 <p>运算符可以重载为全局函数，也可以被重载为成员函数，应用于类或结构体。</p>
@@ -341,8 +344,10 @@
 <p>-1 -2</p>
 </blockquote>
 <p>运算符重载为全局函数时，参数的个数等于运算符的目数（即操作数的个数）；运算符重载为成员函数时，参数的个数等于运算符的目数减一。</p>
-<h1 id="运算符重载为友元函数"><a href="#运算符重载为友元函数" class="headerlink" title="运算符重载为友元函数"></a>运算符重载为友元函数</h1><p>一般情况下，将运算符重载为成员函数是较好的选择。但有时，重载为成员函数不能满足使用要求，重载为全局函数又不能访问类的私有成员，因此需要将运算符重载为友元。</p>
-<p>在重载运算符的基础之上 在前面加上关键词friend 即可。重载的运算符可以访问到结构体内变量</p>
+<h1 id="运算符重载为友元函数">运算符重载为友元函数</h1>
+<p>一般情况下，将运算符重载为成员函数是较好的选择。但有时，重载为成员函数不能满足使用要求，重载为全局函数又不能访问类的私有成员，因此需要将运算符重载为友元。</p>
+<p>在重载运算符的基础之上 在前面加上关键词friend
+即可。重载的运算符可以访问到结构体内变量</p>
 
                 
               </div>
@@ -433,12 +438,18 @@
                   <article class="post-prev col-6">
                     
                     
+                      <a href="/2024/05/31/%E7%9F%A9%E9%98%B5%E5%BF%AB%E9%80%9F%E5%B9%82/" title="矩阵快速幂">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">矩阵快速幂</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/05/31/%E5%B0%8F%E6%8A%80%E5%B7%A7-%E6%B1%82%E5%8C%BA%E9%97%B4%E5%A5%87%E6%95%B0%E4%B8%AA%E6%95%B0/" title="小技巧-寻找区间奇数个数">
-                        <span class="hidden-mobile">小技巧-寻找区间奇数个数</span>
+                      <a href="/2024/05/31/%E6%88%91%E7%9A%84%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" title="计算机网络笔记">
+                        <span class="hidden-mobile">计算机网络笔记</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
