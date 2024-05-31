@@ -18,19 +18,22 @@
   <meta name="author" content="wangzj">
   <meta name="keywords" content="">
   
-    <meta property="og:type" content="website">
-<meta property="og:title" content="关于">
-<meta property="og:url" content="http://example.com/about/index.html">
+    <meta name="description" content="c++运算符重载概念和原理c++的运算符加减乘除只能对于基本数据类型变量或常量进行运算，当我们想要进行对象之间的运算时略显繁琐，希望对象之间也可以直接使用运算符进行运算 利用 C++ 提供的“运算符重载”机制，赋予运算符新的功能，就能解决用+将两个对象相加这样的问题。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="c++运算符重载">
+<meta property="og:url" content="http://example.com/2024/05/31/%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD/index.html">
 <meta property="og:site_name" content="wangzj的个人博客">
+<meta property="og:description" content="c++运算符重载概念和原理c++的运算符加减乘除只能对于基本数据类型变量或常量进行运算，当我们想要进行对象之间的运算时略显繁琐，希望对象之间也可以直接使用运算符进行运算 利用 C++ 提供的“运算符重载”机制，赋予运算符新的功能，就能解决用+将两个对象相加这样的问题。">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-05-31T13:20:28.874Z">
-<meta property="article:modified_time" content="2024-05-31T13:08:07.864Z">
+<meta property="article:published_time" content="2024-05-31T13:08:07.863Z">
+<meta property="article:modified_time" content="2024-05-31T13:08:07.863Z">
 <meta property="article:author" content="wangzj">
+<meta property="article:tag" content="运算符重载">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>关于 - wangzj的个人博客</title>
+  <title>c++运算符重载 - wangzj的个人博客</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -117,7 +120,7 @@
   <header>
     
 
-<div class="header-inner" style="height: 60vh;">
+<div class="header-inner" style="height: 70vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
@@ -235,9 +238,49 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="关于"></span>
+            <span id="subtitle" data-typed-text="c++运算符重载"></span>
           
         </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-05-31 21:08" pubdate>
+          2024年5月31日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          889 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          8 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
 
         
       </div>
@@ -253,75 +296,171 @@
 
   <main>
     
-      <div class="container nopadding-x-md">
-        <div id="board"
-          >
-          
-            <div class="about-avatar">
-              <img src="/img/avatar.jpg" srcset="/img/loading.gif" lazyload class="img-fluid" alt="avatar">
-            </div>
-          
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-md-10 m-auto">
-                
+      
 
-<div class="text-center">
-  <div class="about-info">
-    <div class="about-name">王兆君</div>
-    <div class="about-intro">生命可以随心所欲,但不能随波逐流。</div>
-    <div class="about-icons">
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
       
-        
-        
-        
-        <a href=https://github.com/wangzj111 class="
-           hint--bottom hint--rounded"
-           aria-label=GitHub
-           target="_blank"
-        >
-          <i class="iconfont icon-github-fill" aria-hidden="true"></i>
-          
-        </a>
+  <aside class="sidebar" style="padding-left: 2rem; margin-right: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">c++运算符重载</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="c-运算符重载概念和原理"><a href="#c-运算符重载概念和原理" class="headerlink" title="c++运算符重载概念和原理"></a>c++运算符重载概念和原理</h1><p>c++的运算符加减乘除只能对于基本数据类型变量或常量进行运算，当我们想要进行对象之间的运算时略显繁琐，希望对象之间也可以直接使用运算符进行运算</p>
+<p>利用 C++ 提供的“运算符重载”机制，赋予运算符新的功能，就能解决用<code>+</code>将两个对象相加这样的问题。</p>
+<span id="more"></span>
+<p>运算符重载，就是对已有的运算符赋予多重含义，使同一运算符作用于不同类型的数据时产生不同的行为。运算符重载的目的是使得 C++ 中的运算符也能够用来操作对象。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs c++">返回值类型 <span class="hljs-keyword">operator</span> 运算符(形参表) &#123;<br>...<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>包含被重载的运算符的表达式会被编译成对运算符函数的调用，运算符的操作数成为函数调用时的实参，运算的结果就是函数的返回值。运算符可以被多次重载。</p>
+<p>运算符可以重载为全局函数，也可以被重载为成员函数，应用于类或结构体。</p>
+<p>比如我们在写计算几何时可以定义point结构体用于表示点坐标重写运算符加减点坐标得到二维平面上的向量来计算会更加简便</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">struct</span> <span class="hljs-title class_">point</span>&#123;<br>    <span class="hljs-type">int</span> x;<br>    <span class="hljs-type">int</span> y;<br>    <span class="hljs-built_in">point</span>(<span class="hljs-type">int</span> x = <span class="hljs-number">0</span>, <span class="hljs-type">int</span> y = <span class="hljs-number">0</span>) :<span class="hljs-built_in">x</span>(x), <span class="hljs-built_in">y</span>(y) &#123;&#125;;<br>    point <span class="hljs-keyword">operator</span> -(<span class="hljs-type">const</span> point&amp; p) &#123;<br>        x -= p.x; y -= p.y;<br>        <span class="hljs-keyword">return</span> *<span class="hljs-keyword">this</span>;<br>    &#125;<br>&#125;;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>  <br>    <span class="hljs-function">point <span class="hljs-title">p1</span><span class="hljs-params">(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>)</span>, <span class="hljs-title">p2</span><span class="hljs-params">(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>)</span></span>;<br>    p1 = p1 - p2;<br>    cout &lt;&lt; p1.x&lt;&lt;<span class="hljs-string">&quot; &quot;</span> &lt;&lt; p1.y;<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>结果是</p>
+<blockquote>
+<p>-1 -2</p>
+</blockquote>
+<p>运算符重载为全局函数时，参数的个数等于运算符的目数（即操作数的个数）；运算符重载为成员函数时，参数的个数等于运算符的目数减一。</p>
+<h1 id="运算符重载为友元函数"><a href="#运算符重载为友元函数" class="headerlink" title="运算符重载为友元函数"></a>运算符重载为友元函数</h1><p>一般情况下，将运算符重载为成员函数是较好的选择。但有时，重载为成员函数不能满足使用要求，重载为全局函数又不能访问类的私有成员，因此需要将运算符重载为友元。</p>
+<p>在重载运算符的基础之上 在前面加上关键词friend 即可。重载的运算符可以访问到结构体内变量</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
       
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
         
-        
-        
-        <a href=https://steamcommunity.com/profiles/76561198805290882/friends/add class="
-           hint--bottom hint--rounded"
-           aria-label=steam
-           target="_blank"
-        >
-          <i class="iconfont icon-steam" aria-hidden="true"></i>
-          
-        </a>
+  <a href="/categories/%E7%AE%97%E6%B3%95/" class="category-chain-item">算法</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
       
-        
-        
-        
-        <a  class="qr-trigger
-           "
-           
-           target="_self"
-        >
-          <i class="iconfont icon-wechat-fill" aria-hidden="true"></i>
-          
-            <img class="qr-img" src="/img/wechat.jpg" srcset="/img/loading.gif" lazyload alt="qrcode" />
-          
-        </a>
+        <a href="/tags/%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD/" class="print-no-link">#运算符重载</a>
       
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>c++运算符重载</div>
+      <div>http://example.com/2024/05/31/运算符重载/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>wangzj</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年5月31日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/05/31/%E5%B0%8F%E6%8A%80%E5%B7%A7-%E6%B1%82%E5%8C%BA%E9%97%B4%E5%A5%87%E6%95%B0%E4%B8%AA%E6%95%B0/" title="小技巧-寻找区间奇数个数">
+                        <span class="hidden-mobile">小技巧-寻找区间奇数个数</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
     </div>
   </div>
 </div>
 
-<article class="about-content page-content mt-5">
-  <div class="markdown-body">
-    
-  </div>
-
-  
-</article>
-
 
 
 
@@ -354,11 +493,8 @@
 
 
 
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+
+
     
 
     
@@ -447,6 +583,46 @@
   
 
 
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
 
 
   <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
